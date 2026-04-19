@@ -10,11 +10,15 @@ if (!isset($_SESSION['id_usuario'])) {
 $id = $_POST['id'];
 $fecha = $_POST['fecha'];
 $tipo = $_POST['tipo'];
-$autorizado = $_POST['autorizado'];
+$autorizado = $_POST['autorizado'] ?? 0;
 $notas = $_POST['notas'] ?? "";
 
-// Calcular próximo mantenimiento (ej: +3 meses)
-$proximo = date('Y-m-d', strtotime($fecha . ' +3 months'));
+// 🔹 Obtener meses desde configuración
+$config = $conexion->query("SELECT meses_mantenimiento FROM configuracion LIMIT 1")->fetch_assoc();
+$meses = $config['meses_mantenimiento'];
+
+// 🔹 Calcular próximo mantenimiento
+$proximo = date('Y-m-d', strtotime($fecha . " +$meses months"));
 
 // INSERT en historial
 $sql = "INSERT INTO mantenimientos 
@@ -24,10 +28,10 @@ VALUES (?, ?, ?, ?, ?, ?)";
 $stmt = $conexion->prepare($sql);
 $stmt->bind_param("ississ", $id, $fecha, $tipo, $autorizado, $notas, $proximo);
 
+
 $stmt->execute();
 
-// Opcional: actualizar estado en equipos
-$conexion->query("UPDATE equipos SET mantenimiento='SI' WHERE id=$id");
+
 
 
 header("Location: ../pages/equipos.php?success=mantenimiento");

@@ -1,10 +1,10 @@
 <?php
 require_once "config/conexion.php";
 
-$usuario = "admin";
+$usuario = "Michelle";
 $correo  = "admin@radar.com";
 $password = password_hash("123456", PASSWORD_DEFAULT);
-$rol = "supervisor";
+$rol = "tecnico";
 $estado = "activo";
 
 $sql = "INSERT INTO usuarios (usuario, correo, password, rol, estado)

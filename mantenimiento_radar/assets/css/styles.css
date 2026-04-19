@@ -1,0 +1,408 @@
+
+
+/* ===== MENSAJES ===== */
+.mensaje {
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.mensaje.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.mensaje.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* ===== BASE ===== */
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: #0f172a;
+    color: #e2e8f0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1;
+}
+/* ===== NAVBAR ===== */
+.custom-navbar {
+    background: #020617;
+    padding: 14px 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+/* TEXTO IZQUIERDA */
+.nav-brand-clean {
+    font-size: 18px;
+    font-weight: 600;
+    color: #e2e8f0;
+    letter-spacing: 0.4px;
+    transition: 0.2s;
+}
+
+.nav-brand-clean:hover {
+    color: #0ea5e9;
+}
+
+/* LINKS */
+.custom-navbar .nav-link {
+    color: #94a3b8;
+    font-size: 15px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+/* HOVER */
+.custom-navbar .nav-link:hover {
+    color: #0ea5e9;
+}
+
+/* LOGOUT */
+.custom-navbar .logout {
+    color: #ef4444;
+}
+
+.custom-navbar .logout:hover {
+    color: #f87171;
+}
+
+/* CENTRADO EN MOBILE */
+.navbar-nav {
+    text-align: center;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .custom-navbar {
+        padding: 12px 20px;
+    }
+
+    .nav-brand-clean {
+        font-size: 16px;
+    }
+}
+
+/* ===== CARDS ===== */
+.card {
+    background-color: #1e293b;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    transition: 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+/* ===== BOTONES ===== */
+.btn {
+    border-radius: 8px;
+}
+
+.btn-primary {
+    background-color: #0ea5e9;
+    border: none;
+}
+
+.btn-danger {
+    background-color: #ef4444;
+}
+
+.btn-success {
+    background-color: #22c55e;
+}
+
+/* ===== TABLAS ===== */
+.table {
+    border-radius: 10px;
+    overflow: hidden;
+    color: white;
+}
+
+.table thead {
+    background-color: #020617;
+}
+
+/* ===== FILAS DINÁMICAS ===== */
+.fila-vencido {
+    background-color: rgba(239, 68, 68, 0.2);
+}
+
+.fila-ok {
+    background-color: rgba(34, 197, 94, 0.2);
+}
+
+/* ===== TITULOS ===== */
+h3, h4, h5 {
+    font-weight: 600;
+}
+
+
+
+
+
+
+.btn-dark {
+    background-color: #020617;
+    border: none;
+}
+
+.btn-dark:hover {
+    background-color: #1e293b;
+}
+
+
+
+
+/* ===== RADAR CARDS PRO ===== */
+.radar-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    padding: 10px;
+}
+
+/* línea lateral tipo dashboard pro */
+.radar-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 5px;
+    height: 100%;
+}
+
+/* colores */
+.radar-blue::before {
+    background: #0ea5e9;
+}
+
+.radar-green::before {
+    background: #22c55e;
+}
+
+.radar-red::before {
+    background: #ef4444;
+}
+
+/* texto */
+.radar-card h6 {
+    font-size: 14px;
+    color: #94a3b8;
+}
+
+.radar-card h2 {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+
+/* ===== LOGIN ===== */
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at top, #1e293b, #020617);
+    padding: 20px;
+}
+
+/* TARJETA */
+.login-card {
+    background: #ffffff;
+    padding: 80px 60px;
+    border-radius: 24px;
+    width: 500px;
+    max-width: 100%;
+    text-align: center;
+    box-shadow: 0 35px 70px rgba(0,0,0,0.6);
+}
+
+/* LOGO */
+.login-logo {
+    width: 185px;
+    margin-bottom: 35px;
+}
+
+/* SUBTÍTULO */
+.login-subtitle {
+    font-size: 18px;
+    font-weight: 500;
+    color: #475569;
+    margin-bottom: 35px;
+}
+
+/* INPUTS */
+.login-card input {
+    width: 100%;
+    padding: 13px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    color: #0f172a;
+}
+
+.login-card input:focus {
+    outline: none;
+    border: 1px solid #0ea5e9;
+    box-shadow: 0 0 0 2px rgba(14,165,233,0.2);
+}
+
+/* BOTÓN */
+.login-card button {
+    width: 100%;
+    padding: 13px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #0ea5e9, #0284c7);
+    color: white;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.login-card button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(14,165,233,0.3);
+}
+
+/* REDES */
+.login-social {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+}
+
+/* botones circulares */
+.login-social a {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #f1f5f9;
+    color: #0ea5e9;
+    font-size: 18px;
+    transition: 0.25s;
+    text-decoration: none;
+}
+
+/* hover elegante */
+.login-social a:hover {
+    background: #0ea5e9;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(14,165,233,0.4);
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+    .login-card {
+        padding: 40px 25px;
+    }
+
+    .login-logo {
+        width: 140px;
+    }
+}
+
+
+
+/*footer*/
+
+footer a {
+    color: #94a3b8;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #0ea5e9;
+}
+
+/* ===== FOOTER PRO ===== */
+.app-footer {
+    margin-top: 50px;
+    padding: 40px 20px;
+    background: #020617;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* CONTENEDOR */
+.footer-container {
+    max-width: 900px; /* antes 1100 */
+    margin: auto;
+    display: flex;
+    justify-content: center; /* CAMBIO CLAVE */
+    align-items: flex-start;
+    gap: 80px; /* controla separación real */
+    flex-wrap: wrap;
+}
+
+/* LOGO + TEXTO */
+.footer-brand img {
+    width: 200px;
+    margin-bottom: 60px;
+}
+
+
+/* LINKS */
+.footer-links {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.footer-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ESTILO LINKS */
+.footer-group a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.footer-group a:hover {
+    color: #0ea5e9;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-links {
+        justify-content: center;
+    }
+}
+
+.app-footer {
+    margin-top: 0; /* quitamos separación fea */
+    padding: 40px 20px;
+    background: #020617;
+    border-top: 1px solid rgba(255,255,255,0.08); /* 🔥 línea sutil */
+}

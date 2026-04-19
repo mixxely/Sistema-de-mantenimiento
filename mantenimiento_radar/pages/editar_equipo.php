@@ -28,15 +28,7 @@ if ($result->num_rows == 0) {
 $equipo = $result->fetch_assoc();
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Editar Equipo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-
+<?php include "../includes/header.php"; ?>
 <?php include "../includes/navbar.php"; ?>
 
 <div class="container mt-4">
@@ -59,5 +51,4 @@ $equipo = $result->fetch_assoc();
     </form>
 </div>
 
-</body>
-</html>
+<?php include "../includes/footer.php"; ?>

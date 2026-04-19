@@ -29,24 +29,54 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 $equipo = $result->fetch_assoc();
+
+
+// 🔹 Obtener configuración (meses)
+$config = $conexion->query("SELECT * FROM configuracion LIMIT 1")->fetch_assoc();
+$meses = $config['meses_mantenimiento'];
+
+// 🔹 Obtener último mantenimiento
+$ultimo = $conexion->prepare("
+    SELECT fecha FROM mantenimientos 
+    WHERE equipo_id = ? 
+    ORDER BY fecha DESC LIMIT 1
+");
+$ultimo->bind_param("i", $id);
+$ultimo->execute();
+$resUltimo = $ultimo->get_result()->fetch_assoc();
+
+$proximo = null;
+
+if ($resUltimo) {
+    $proximo = date('Y-m-d', strtotime($resUltimo['fecha'] . " +$meses months"));
+}
+
+
+
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Mantenimiento</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-
+<?php include "../includes/header.php"; ?>
 <?php include "../includes/navbar.php"; ?>
+
+
+
+
 
 <div class="container mt-4">
 
     <h3>Mantenimiento del equipo</h3>
 
     <p><strong>Equipo:</strong> <?= $equipo['numero_serie'] ?></p>
+
+    <?php if ($proximo): ?>
+    <div class="alert alert-info">
+        Próximo mantenimiento estimado: <strong><?= $proximo ?></strong>
+    </div>
+<?php else: ?>
+    <div class="alert alert-warning">
+        Este equipo aún no tiene mantenimiento registrado.
+    </div>
+<?php endif; ?>
 
     <form action="../actions/guardar_mantenimiento.php" method="POST">
 
@@ -91,7 +121,7 @@ $equipo = $result->fetch_assoc();
             <th>Tipo</th>
             <th>Autorizado</th>
             <th>Notas</th>
-            <th>Próximo</th>
+            
         </tr>
     </thead>
     <tbody>
@@ -103,7 +133,7 @@ $equipo = $result->fetch_assoc();
                 <td><?= htmlspecialchars($row['tipo']) ?></td>
                 <td><?= $row['autorizado'] ? 'Sí' : 'No' ?></td>
                 <td><?= htmlspecialchars($row['notas']) ?></td>
-                <td><?= htmlspecialchars($row['proximo_mantenimiento']) ?></td>
+                
             </tr>
         <?php endwhile; ?>
     <?php else: ?>
@@ -117,5 +147,4 @@ $equipo = $result->fetch_assoc();
 
 </div>
 
-</body>
-</html>
+<?php include "../includes/footer.php"; ?>

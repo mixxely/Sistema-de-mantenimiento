@@ -2,13 +2,11 @@
 session_start();
 require_once "../config/conexion.php";
 
-// Seguridad
 if (!isset($_SESSION['id_usuario'])) {
     header("Location: ../pages/login.php");
     exit;
 }
 
-// Validar ID
 if (!isset($_GET['id'])) {
     header("Location: ../pages/equipos.php");
     exit;
@@ -16,13 +14,18 @@ if (!isset($_GET['id'])) {
 
 $id = $_GET['id'];
 
-// Eliminar equipo
-$sql = "DELETE FROM equipos WHERE id = ?";
-$stmt = $conexion->prepare($sql);
-$stmt->bind_param("i", $id);
+// 🔴 PRIMERO eliminar mantenimientos
+$stmt1 = $conexion->prepare("DELETE FROM mantenimientos WHERE equipo_id = ?");
+$stmt1->bind_param("i", $id);
+$stmt1->execute();
 
-if ($stmt->execute()) {
+// 🔴 DESPUÉS eliminar equipo
+$stmt2 = $conexion->prepare("DELETE FROM equipos WHERE id = ?");
+$stmt2->bind_param("i", $id);
+
+if ($stmt2->execute()) {
     header("Location: ../pages/equipos.php?success=eliminado");
+    exit;
 } else {
-    echo "Error al eliminar";
+    echo "Error al eliminar: " . $stmt2->error;
 }
